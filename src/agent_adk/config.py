@@ -11,11 +11,12 @@ Raises:
 
 import json
 import os
+from pathlib import Path
+from dotenv import load_dotenv, find_dotenv
 
-from dotenv import load_dotenv
+_BASE_DIR = Path(__file__).resolve().parents[2]
 
-load_dotenv()
-
+load_dotenv(find_dotenv())  # Load environment variables from .env file
 
 def _require(key: str) -> str:
     """
@@ -56,9 +57,9 @@ BIFROST_API_KEY = _require("BIFROST_API_KEY")
 BIFROST_MODEL = _require("BIFROST_MODEL")
 
 # SSL
-SSL_CERT_PATH = _require("SSL_CERT_PATH")
-OTEL_CLIENT_CERT = _require("OTEL_CLIENT_CERT_PATH")
-OTEL_CLIENT_KEY = _require("OTEL_CLIENT_KEY_PATH")
+SSL_CERT_PATH = _BASE_DIR / _require("SSL_CERT_PATH")
+OTEL_CLIENT_CERT = _BASE_DIR / _require("OTEL_CLIENT_CERT_PATH")
+OTEL_CLIENT_KEY = _BASE_DIR / _require("OTEL_CLIENT_KEY_PATH")
 
 # OpenTelemetry endpoints
 OTEL_METRICS_ENDPOINT = _require("OTEL_METRICS_ENDPOINT")
