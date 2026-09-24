@@ -146,6 +146,7 @@ def _langfuse_prompt():
     return _langfuse.get_prompt(
         config.LANGFUSE_PROMPT_NAME,
         label=config.LANGFUSE_PROMPT_LABEL,
+        fallback="You are a helpful assistant. Answer the user's questions as best you can.",
     )
 
 
