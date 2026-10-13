@@ -1,0 +1,168 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-adk
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agents
+  template:
+    metadata:
+      labels:
+        app: agents
+    spec:
+      containers:
+      - name: agent-adk
+        image: agentadk:0.1.1
+        imagePullPolicy: IfNotPresent
+        stdin: true
+        tty: true
+      env:
+        - name: APP_ENV
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: APP_ENV
+        - name: APP_VERSION
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: APP_VERSION
+        - name: MODEL_PROVIDER
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: MODEL_PROVIDER
+        - name: AGENT_ROUTE
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: AGENT_ROUTE
+        - name: LITELLM_LOCAL_MODEL_COST_MAP
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LITELLM_LOCAL_MODEL_COST_MAP
+        - name: UV_INSECURE
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: UV_INSECURE
+        - name: LANGFUSE_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_BASE_URL
+        - name: LANGFUSE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_SECRET_KEY
+        - name: LANGFUSE_PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_PUBLIC_KEY
+        - name: LANGFUSE_USER_ID
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_USER_ID
+        - name: LANGFUSE_TRACING_ENVIRONMENT
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_TRACING_ENVIRONMENT
+        - name: LANGFUSE_TRACE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_TRACE_NAME
+        - name: LANGFUSE_PROMPT_NAME
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_PROMPT_NAME
+        - name: LANGFUSE_PROMPT_LABEL
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_PROMPT_LABEL
+        - name: LANGFUSE_TAGS
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: LANGFUSE_TAGS
+        - name: BIFROST_GATEWAY_URL
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: BIFROST_GATEWAY_URL
+        - name: BIFROST_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: BIFROST_API_KEY
+        - name: BIFROST_MODEL
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: BIFROST_MODEL
+        - name: SSL_CERT_FILE
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: SSL_CERT_FILE
+        - name: OTEL_EXPORTER_OTLP_CERTIFICATE
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_EXPORTER_OTLP_CERTIFICATE
+        - name: SSL_CERT_PATH
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: SSL_CERT_PATH
+        - name: OTEL_SERVICE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_SERVICE_NAME
+        - name: OTEL_SERVICE_VERSION
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_SERVICE_VERSION
+        - name: OTEL_METRICS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_METRICS_ENDPOINT
+        - name: OTEL_TRACES_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_TRACES_ENDPOINT
+        - name: OTEL_LOGS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_LOGS_ENDPOINT
+        - name: OTEL_CLIENT_CERT_PATH
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_CLIENT_CERT_PATH
+        - name: OTEL_CLIENT_KEY_PATH
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: OTEL_CLIENT_KEY_PATH
+        - name: PYROSCOPE_SERVER_URL
+          valueFrom:
+            secretKeyRef:
+              name: agent-adk-secrets
+              key: PYROSCOPE_SERVER_URL
+      
