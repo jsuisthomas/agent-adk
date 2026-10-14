@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/jsuisthomas/agent-adk.git
-    targetRevision: delevop  
+    targetRevision: develop  
     path: kube  # Chemin vers les manifests Kubernetes
   destination:
     server: https://kubernetes.default.svc  
